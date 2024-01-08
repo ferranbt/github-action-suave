@@ -1,13 +1,10 @@
 name: "Hello World"
-description: "Greet someone and record the time"
+description: "Install suave-geth"
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
-    required: true
-    default: "World"
-outputs:
-  time: # id of output
-    description: "The time we greeted you"
+  version:
+    description: "Suave-geth version"
+    required: false
+    default: "latest"
 runs:
   using: "node20"
   main: "dist/index.js"

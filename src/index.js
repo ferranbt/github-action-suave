@@ -7,7 +7,13 @@ console.log("Now?");
 
 async function main() {
   try {
-    const download = getDownloadObject();
+    // Get version input
+    let version = core.getInput("version");
+    if (version == "latest") {
+      version = await fetchLatestReleaseTag();
+    }
+
+    const download = getDownloadObject(version);
     core.info(`Downloading suave-geth from: ${download.url}`);
     const pathToArchive = await toolCache.downloadTool(download.url);
 
@@ -21,23 +27,17 @@ async function main() {
   } catch (error) {
     core.setFailed(error.message);
   }
-
-  try {
-    // `who-to-greet` input defined in action metadata file
-    const nameToGreet = core.getInput("who-to-greet");
-    console.log(`Hello ${nameToGreet}!`);
-    const time = new Date().toTimeString();
-    core.setOutput("time", time);
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2);
-    console.log(`The event payload: ${payload}`);
-  } catch (error) {
-    core.setFailed(error.message);
-  }
 }
 
-function getDownloadObject() {
-  const url = `https://github.com/ferranbt/suave-geth/releases/download/v0.3.3/suave-geth_v0.3.3_linux_amd64.zip`;
+async function fetchLatestReleaseTag() {
+  const response = await axios.get("https://api.github.com/repos/flashbots/suave-geth/releases/latest");
+
+  const tagName = response.data.tag_name;
+  return tagName;
+}
+
+function getDownloadObject(version) {
+  const url = `https://github.com/ferranbt/suave-geth/releases/download/${version}/suave-geth_${version}_linux_amd64.zip`;
 
   return {
     url,
