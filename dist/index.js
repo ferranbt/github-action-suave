@@ -32781,7 +32781,7 @@ console.log("Now?");
 async function main() {
   try {
     const download = getDownloadObject();
-    core.info(`Downloading suave-geth '${version}' from: ${download.url}`);
+    core.info(`Downloading suave-geth from: ${download.url}`);
     const pathToArchive = await toolCache.downloadTool(download.url);
 
     // Extract the archive onto host runner
