@@ -28906,6 +28906,73 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 4498:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const core = __nccwpck_require__(6931);
+const github = __nccwpck_require__(4873);
+const toolCache = __nccwpck_require__(4775);
+const { exec } = __nccwpck_require__(2081);
+
+console.log("Now?");
+
+async function main() {
+  try {
+    const download = getDownloadObject();
+    core.info(`Downloading suave-geth '${version}' from: ${download.url}`);
+    const pathToArchive = await toolCache.downloadTool(download.url);
+
+    // Extract the archive onto host runner
+    core.debug(`Extracting ${pathToArchive}`);
+    const extract = download.url.endsWith(".zip") ? toolCache.extractZip : toolCache.extractTar;
+    const pathToCLI = await extract(pathToArchive);
+
+    // Expose the tool
+    core.addPath(path.join(pathToCLI, download.binPath));
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+
+  try {
+    // `who-to-greet` input defined in action metadata file
+    const nameToGreet = core.getInput("who-to-greet");
+    console.log(`Hello ${nameToGreet}!`);
+    const time = new Date().toTimeString();
+    core.setOutput("time", time);
+    // Get the JSON webhook payload for the event that triggered the workflow
+    const payload = JSON.stringify(github.context.payload, undefined, 2);
+    console.log(`The event payload: ${payload}`);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+}
+
+function getDownloadObject() {
+  const url = `https://github.com/ferranbt/suave-geth/releases/download/v0.3.3/suave-geth_v0.3.3_linux_amd64.zip`;
+
+  return {
+    url,
+    binPath: ".",
+  };
+}
+
+module.exports = main;
+
+if (require.main === require.cache[eval('__filename')]) {
+  main();
+}
+
+
+/***/ }),
+
+/***/ 4775:
+/***/ ((module) => {
+
+module.exports = eval("require")("@actions/tool-cache");
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -30795,48 +30862,13 @@ module.exports = parseParams
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-const core = __nccwpck_require__(6931);
-const github = __nccwpck_require__(4873);
-const { exec } = __nccwpck_require__(2081);
-
-console.log("Now?");
-
-exec(
-  "curl https://gist.githubusercontent.com/ferranbt/9b2765236b1f4297dd06e9e02d3c3432/raw/76e171abe25c79adf8cf4268f792754c4959e7d1/suaveup.sh | bash",
-  (error, stdout, stderr) => {
-    if (error) {
-      console.log(`Error: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.log(`stderr: ${stderr}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-  },
-);
-
-console.log("Now2");
-
-try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput("who-to-greet");
-  console.log(`Hello ${nameToGreet}!`);
-  const time = new Date().toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
-  console.log(`The event payload: ${payload}`);
-} catch (error) {
-  core.setFailed(error.message);
-}
-
-})();
-
-module.exports = __webpack_exports__;
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __nccwpck_require__(4498);
+/******/ 	module.exports = __webpack_exports__;
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map
