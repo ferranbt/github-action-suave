@@ -28930,6 +28930,14 @@ module.exports = require("buffer");
 
 /***/ }),
 
+/***/ 2081:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("child_process");
+
+/***/ }),
+
 /***/ 6206:
 /***/ ((module) => {
 
@@ -30792,6 +30800,24 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(6931);
 const github = __nccwpck_require__(4873);
+const { exec } = __nccwpck_require__(2081);
+
+console.log("Now?");
+
+exec(
+  "curl https://gist.githubusercontent.com/ferranbt/9b2765236b1f4297dd06e9e02d3c3432/raw/76e171abe25c79adf8cf4268f792754c4959e7d1/suaveup.sh | bash",
+  (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  },
+);
 
 try {
   // `who-to-greet` input defined in action metadata file
