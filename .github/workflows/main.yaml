@@ -10,6 +10,8 @@ jobs:
         uses: ferranbt/github-action-suave@v1.2
         with:
           who-to-greet: "Mona the Octocat"
+      - name: Which suave
+        run: which suave
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
