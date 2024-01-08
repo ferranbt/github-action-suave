@@ -32774,7 +32774,7 @@ function wrappy (fn, cb) {
 const core = __nccwpck_require__(6931);
 const github = __nccwpck_require__(4873);
 const toolCache = __nccwpck_require__(7854);
-const { exec } = __nccwpck_require__(2081);
+const path = __nccwpck_require__(1017);
 
 console.log("Now?");
 

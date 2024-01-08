@@ -1,7 +1,7 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 const toolCache = require("@actions/tool-cache");
-const { exec } = require("child_process");
+const path = require("path");
 
 console.log("Now?");
 
