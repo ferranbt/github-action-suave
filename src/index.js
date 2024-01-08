@@ -36,7 +36,7 @@ async function fetchLatestReleaseTag() {
 }
 
 function getDownloadObject(version) {
-  const url = `https://github.com/ferranbt/suave-geth/releases/download/${version}/suave-geth_${version}_linux_amd64.zip`;
+  const url = `https://github.com/flashbots/suave-geth/releases/download/${version}/suave-geth_${version}_linux_amd64.zip`;
 
   return {
     url,
