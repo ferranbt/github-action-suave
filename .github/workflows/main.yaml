@@ -10,7 +10,7 @@ jobs:
         uses: ferranbt/github-action-suave@v2.2
         with:
           who-to-greet: "Mona the Octocat"
-      - name: Which suave
+      - name: Which suave-geth
         run: suave version
       # Use the output from the `hello` step
       - name: Get the output time
