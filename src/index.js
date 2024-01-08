@@ -8,11 +8,11 @@ exec(
   "curl https://gist.githubusercontent.com/ferranbt/9b2765236b1f4297dd06e9e02d3c3432/raw/76e171abe25c79adf8cf4268f792754c4959e7d1/suaveup.sh | bash",
   (error, stdout, stderr) => {
     if (error) {
-      console.error(`Error: ${error.message}`);
+      console.log(`Error: ${error.message}`);
       return;
     }
     if (stderr) {
-      console.error(`stderr: ${stderr}`);
+      console.log(`stderr: ${stderr}`);
       return;
     }
     console.log(`stdout: ${stdout}`);
