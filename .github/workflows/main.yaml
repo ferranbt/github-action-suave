@@ -7,8 +7,10 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: flashbots/suave-toolchain@v0.1
+        uses: ferranbt/suave-toolchain@v0.3
         with:
           who-to-greet: "Mona the Octocat"
       - name: Which suave-geth
         run: suave-geth version
+      - name: Other
+        run: suave-geth forge status

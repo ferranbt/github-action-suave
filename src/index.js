@@ -28,14 +28,14 @@ async function main() {
 }
 
 async function fetchLatestReleaseTag() {
-  const response = await axios.get("https://api.github.com/repos/flashbots/suave-geth/releases/latest");
+  const response = await axios.get("https://api.github.com/repos/ferranbt/suave-geth/releases/latest");
 
   const tagName = response.data.tag_name;
   return tagName;
 }
 
 function getDownloadObject(version) {
-  const url = `https://github.com/flashbots/suave-geth/releases/download/${version}/suave-geth_${version}_linux_amd64.zip`;
+  const url = `https://github.com/ferranbt/suave-geth/releases/download/${version}/suave-geth_${version}_linux_amd64.zip`;
 
   return {
     url,
