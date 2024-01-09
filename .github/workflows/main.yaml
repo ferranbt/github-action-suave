@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: ferranbt/suave-toolchain@v0.3
+        uses: ferranbt/github-action-suave@v3.0
         with:
           who-to-greet: "Mona the Octocat"
       - name: Which suave-geth
