@@ -13,4 +13,6 @@ jobs:
       - name: Which suave-geth
         run: suave-geth version
       - name: Other
-        run: suave-geth --suave.dev
+        run: suave-geth --suave.dev &
+      - name: XXX
+        run: suave-geth forge
