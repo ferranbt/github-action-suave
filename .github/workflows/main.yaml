@@ -5,8 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - name: Install suave-geth
+      - name: Hello world action step
+        id: hello
         uses: flashbots/suave-toolchain@v0.1
-
+        with:
+          who-to-greet: "Mona the Octocat"
       - name: Which suave-geth
         run: suave-geth version
